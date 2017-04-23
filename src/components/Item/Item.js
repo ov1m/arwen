@@ -1,31 +1,83 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View as ViewReactNative } from 'react-native';
+import {
+	Text,
+	View
+} from '../../components';
 import ArwenComponent from '../../base/ArwenComponent';
 import Styles from './styles';
 
-class Text extends ArwenComponent {
 
-	static propTypes = {
+const Item = ({
+	containerStyle,
+	height,
+	iconStyle,
+	labelStyle,
+  label,
+  layout,
+	width
+}, context) => {
 
-	};
+  const style = {
+    container: {},
+    label: {},
+    icon: {}
+  };
 
-	static defaultProps = {
+  style.container = Object.assign(
+    {},
+    style.container,
+    Styles.container,
+    layout === 'horizontal' ? Styles.layoutHorizontal : Styles.layoutVertical,
+    context.theme.Item.container,
+    containerStyle || {}
+  );
 
-	};
+  style.label = Object.assign(
+    {},
+    style.label,
+    Styles.label,
+    context.theme.Item.label,
+    containerStyle || {}
+  );
 
-	getStyles() {
-		const themeStyles = this.getTheme().View;
-		const style = Object.assign({}, Styles.default, themeStyles.default);
+  const renderLabel = () => {
+    if (!label) return null;
 
-		return style;
-	}
+    return (
+      <Text style={style.label}>
+        {label}
+      </Text>
+    )
+  };
 
-	render() {
-		return (
-			<ViewReactNative style={[this.getStyles()]}>{this.props.children}</ViewReactNative>
-		)
-	}
-}
+	return (
+		<View>
+      {renderLabel()}
+		</View>
+	)
+};
 
-export default Text;
+Item.propTypes = {
+	containerStyle: PropTypes.shape({}),
+	imageStyle: PropTypes.shape({}),
+	height: PropTypes.number,
+  layout: PropTypes.oneOf(['horizontal', 'vertical']),
+  label: PropTypes.string,
+	uri: PropTypes.string,
+	size: PropTypes.number,
+	width: PropTypes.number
+};
+
+Item.defaultProps = {
+	height: 40,
+  layout: 'horizontal',
+	rounded: true,
+	width: 40
+};
+
+Item.contextTypes = {
+	theme: React.PropTypes.object,
+};
+
+export default Item;

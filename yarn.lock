@@ -2884,6 +2884,13 @@ react-native-vector-icons@4.0.0:
     lodash "^4.0.0"
     yargs "^6.3.0"
 
+react-native-vector-icons@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.0.1.tgz#39c05d2e775deeb98d5afdbda5dcf67965ff674f"
+  dependencies:
+    lodash "^4.0.0"
+    yargs "^6.3.0"
+
 "react-native@https://github.com/exponent/react-native/archive/sdk-16.0.0.tar.gz":
   version "0.43.2"
   resolved "https://github.com/exponent/react-native/archive/sdk-16.0.0.tar.gz#b80f46d93adc813ac7ad4ced6e0f44eb468bdc9b"

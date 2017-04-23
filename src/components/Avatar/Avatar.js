@@ -8,25 +8,38 @@ const Avatar = ({
 	height,
 	imageStyle,
 	uri,
+  rounded,
+  size,
 	width
 }, context) => {
-	console.debug('000110',  context)
 
 	const style = {
 		container: {},
 		image: {}
 	};
 
-	// console.log('adsasasddsadasdsadasasd', context.theme.Avatar.container)
+	let roundedBorderRadiusSize;
+  if (size) {
+    roundedBorderRadiusSize = size;
+  } else if (height && width) {
+    roundedBorderRadiusSize = height >= width ? height : width;
+  } else if (height) {
+    roundedBorderRadiusSize = height;
+  }else if(width) {
+    roundedBorderRadiusSize = width;
+  }
+  const borderRadiusStyle = { borderRadius: roundedBorderRadiusSize };
 
-
-	/*
 	style.container = Object.assign(
 		{},
 		style.container,
 		Styles.container,
 		context.theme.Avatar.container,
-		containerStyle || {}
+		containerStyle || {},
+    rounded ? borderRadiusStyle : {},
+    height ? { height: height } : {},
+    width ? { width: width } : {},
+    size ? { height: size, width: size} : {}
 	);
 
 	style.image = Object.assign(
@@ -34,17 +47,21 @@ const Avatar = ({
 		style.image,
 		Styles.image,
 		context.theme.Avatar.image,
-		imageStyle || {},
-		height || {},
-		width || {}
+    imageStyle || {},
+    height ? { height: height } : {},
+    width ? { width: width } : {},
+    size ? { height: size, width: size} : {}
 	);
-	*/
+
+  console.log('0000  ', style.container, style.image)
 
 	return (
-		<View>
+		<View style={style.container}>
 			<Image
-				uri={uri}
+				style={style.image}
+        source={{uri}}
 			/>
+      <Text>as</Text>
 		</View>
 	)
 };
@@ -54,59 +71,18 @@ Avatar.propTypes = {
 	imageStyle: PropTypes.shape({}),
 	height: PropTypes.number,
 	uri: PropTypes.string,
+	size: PropTypes.number,
 	width: PropTypes.number
 };
 
 Avatar.defaultProps = {
 	height: 40,
+  rounded: true,
 	width: 40
 };
 
-/*
-
-class Avatar extends ArwenComponent {
-
-	static propTypes = {
-		height: PropTypes.number,
-		width: PropTypes.number
-	};
-
-	static defaultProps = {
-		height: 40,
-		width: 40
-	};
-
-	getStyles() {
-		const style = {
-			container: {},
-			image: {}
-		};
-
-		// const style = Object.assign({}, Styles.default, themeStyles.default);
-
-		return style;
-	}
-
-	getProps() {
-		const {
-			height,
-			width,
-			...rest
-		} = this.props;
-
-		return rest;
-	}
-
-	render() {
-		return (
-			<View style={[this.getStyles().container]}>
-				<Image
-					style={[this.getStyles()].image}
-				/>
-			</View>
-		)
-	}
-}
-*/
+Avatar.contextTypes = {
+	theme: React.PropTypes.object,
+};
 
 export default Avatar;

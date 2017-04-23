@@ -19,17 +19,17 @@ const base = {
 
 const theme = {
 	Avatar: {
-		container: {
-
-		},
-		image: {
-
-		}
+		container: {},
+		image: {}
 	},
 	Button: {
 		fontSize: base.fontSizeBase
 	},
-
+	Item: {
+		container: {},
+		icon: {},
+		label: {}
+	},
 	Text: {
 		default: {
 			fontSize: base.fontSizeBase,

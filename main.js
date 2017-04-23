@@ -8,7 +8,6 @@ class App extends React.Component {
     return (
       <View style={styles.container}>
         <Arwen />
-
       </View>
     );
   }
