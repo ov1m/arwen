@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import {
+	Avatar,
+	Text,
+	View
+} from './components';
+import Theme from './base/ArwenComponent';
 
 class Arwen extends Component {
   render() {
     return (
-			<Text>Open up main.js to start working on your app! </Text>
+			<Theme>
+				<Avatar
+				/>
+				<Text
+					strong={true}
+					em={true}
+				>
+					Arwenasd
+				</Text>
+	    </Theme>
     );
   }
 }
