@@ -1,18 +1,16 @@
 
 const Styles = {
   container: {
-    backgroundColor: 'red',
-    height: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 24,
     overflow: 'hidden',
-    width: 32
+    width: 24
 	},
-	image: {
-		height: 32,
-    width: 32
-	},
-  rounded: {
-	  borderRadius: 32
-  }
+	icon: {
+		height: 24,
+    width: 24
+	}
 };
 
 export default Styles;

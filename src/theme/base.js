@@ -25,10 +25,29 @@ const theme = {
 	Button: {
 		fontSize: base.fontSizeBase
 	},
+  Body: {
+	  default: {}
+  },
+  Content: {
+	  default: {}
+  },
+  Footer: {
+	  default: {}
+  },
+  Header: {
+	  default: {}
+  },
 	Item: {
 		container: {},
-		icon: {},
-		label: {}
+		icon: {
+
+    },
+		label: {
+    }
+	},
+	Icon: {
+		container: {},
+		icon: {}
 	},
 	Text: {
 		default: {
@@ -45,7 +64,7 @@ const theme = {
 	},
 
 	View: {
-
+    default: {}
 	}
 };
 

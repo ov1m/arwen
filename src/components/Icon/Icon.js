@@ -15,8 +15,11 @@ import IconZocial  from 'react-native-vector-icons/Zocial';
 import Styles from './styles';
 
 const Icon = ({
+  containerStyle,
 	icon,
 	iconFontName,
+  iconStyle,
+  ...rest
 }, context) => {
 
 	const iconFontsList = {
@@ -31,26 +34,51 @@ const Icon = ({
 	};
 
 	const IconComponent = iconFontsList[iconFontName];
-	console.log('aaaaaa   ', iconFontName, IconComponent)
+  const style = {
+    container: {},
+    icon: {}
+  };
+
+  style.container = Object.assign(
+    {},
+    style.container,
+    Styles.container,
+    context.theme.Icon.container,
+    containerStyle
+  );
+
+  style.icon = Object.assign(
+    {},
+    style.icon,
+    Styles.icon,
+    context.theme.Icon.icon,
+    containerStyle
+  );
 
 	return (
-		<View>
-      <Text>ICON FONT</Text>
-			<IconComponent name='bus' />
+		<View style={style.container}>
+			<IconComponent
+        name={icon}
+        {...rest}
+        {...style.icon}
+      />
 		</View>
 	)
 };
 
 Icon.propTypes = {
+  containerStyle: PropTypes.shape({}),
+	icon: PropTypes.string,
   iconFontName: PropTypes.oneOf([
 		'Entypo', 'EvilIcons', 'FontAwesome', 'Foundation', 'Ionicons',
 		'MaterialIcons', 'Octicons', 'Zocial', 'PlainText'
-	])
+	]),
+  iconStyle: PropTypes.shape({})
 };
 
 Icon.defaultProps = {
+	icon: 'plus',
   iconFontName: 'FontAwesome',
-	name: 'plus',
 };
 
 Icon.contextTypes = {

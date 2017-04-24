@@ -2,10 +2,13 @@ import { StyleSheet } from "react-native";
 
 const Styles = {
 	container: {
+		backgroundColor: 'red',
 		alignItems: 'center',
+    flex: 1,
 		justifyContent: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 4,
+		flexDirection: 'row',
+    paddingHorizontal: 16,
+    paddingVertical: 6,
 	},
 	icon: {
 
@@ -13,10 +16,10 @@ const Styles = {
 	label: {
 		fontSize: 16
 	},
-  layoutHorizontal: {
-    flexDirection: 'row'
+	directionHorizontal: {
+	  flexDirection: 'row'
   },
-  layoutVertical: {
+	directionVertical: {
     flexDirection: 'column'
   },
 };

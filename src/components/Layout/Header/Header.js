@@ -1,38 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View as ViewReactNative } from 'react-native';
+import { View } from './../../../components';
 import Styles from './styles';
 
-const View = ({
+const Header = ({
 	style,
 	...rest
 }, context) => {
 
-	const mergedStyle = Object.assign(
-		{},
+  const mergedStyle = Object.assign(
+    {},
     style,
-		Styles.default,
+    Styles.default,
     context.theme.View.default,
-	);
+  );
 
 	return (
-		<ViewReactNative
+		<View
 			{...rest}
-      style={mergedStyle}
+			style={mergedStyle}
 		/>
 	)
 };
 
-View.propTypes = {
+
+Header.propTypes = {
   style: PropTypes.shape({})
 };
 
-View.defaultProps = {
+Header.defaultProps = {
   style: {}
 };
 
-View.contextTypes = {
+Header.contextTypes = {
 	theme: React.PropTypes.object,
 };
 
-export default View;
+export default Header;

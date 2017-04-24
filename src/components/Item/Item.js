@@ -1,20 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+	Icon,
 	Text,
 	View
 } from '../../components';
-import ArwenComponent from '../../base/ArwenComponent';
+import { View as VRN } from 'react-native';
 import Styles from './styles';
 
 
 const Item = ({
 	containerStyle,
+	direction,
+  gap,
 	height,
-	iconStyle,
+	icon,
+	iconFontName,
+  iconStyle,
 	labelStyle,
+  labelUppercase,
   label,
-  layout,
+  reverse,
 	width
 }, context) => {
 
@@ -28,7 +34,7 @@ const Item = ({
     {},
     style.container,
     Styles.container,
-    layout === 'horizontal' ? Styles.layoutHorizontal : Styles.layoutVertical,
+		direction === 'horizontal' ? Styles.directionHorizontal : Styles.directionVertical,
     context.theme.Item.container,
     containerStyle || {}
   );
@@ -41,18 +47,35 @@ const Item = ({
     containerStyle || {}
   );
 
+  console.debug('zzzz zz z z z', style.container)
+
   const renderLabel = () => {
     if (!label) return null;
-
+    const labelText = labelUppercase ? label.toUpperCase() : label;
     return (
       <Text style={style.label}>
-        {label}
+        {labelText}
       </Text>
     )
   };
 
+  const renderIcon = () => {
+    if (!icon) return null;
+    const renderIconComponent = typeof icon === 'string' ? (
+      <Icon
+        style={style.label}
+        name={icon}
+      />
+    ) : (
+      {label}
+    );
+
+    return renderIconComponent;
+  };
+
 	return (
-		<View>
+		<View style={style.container}>
+      {renderIcon()}
       {renderLabel()}
 		</View>
 	)
@@ -60,18 +83,29 @@ const Item = ({
 
 Item.propTypes = {
 	containerStyle: PropTypes.shape({}),
-	imageStyle: PropTypes.shape({}),
+	direction: PropTypes.oneOf(['horizontal', 'vertical']),
 	height: PropTypes.number,
-  layout: PropTypes.oneOf(['horizontal', 'vertical']),
+	imageStyle: PropTypes.shape({}),
+	icon: PropTypes.oneOfType([
+	  PropTypes.string,
+    PropTypes.node
+  ]),
+	iconFontName: PropTypes.string,
+  iconStyle: PropTypes.shape({
+    container: PropTypes.shape({}),
+    icon: PropTypes.shape({})
+  }),
   label: PropTypes.string,
+  labelUppercase: PropTypes.bool,
 	uri: PropTypes.string,
 	size: PropTypes.number,
 	width: PropTypes.number
 };
 
 Item.defaultProps = {
+	direction: 'horizontal',
 	height: 40,
-  layout: 'horizontal',
+  labelUppercase: true,
 	rounded: true,
 	width: 40
 };

@@ -1,9 +1,7 @@
 import { StyleSheet } from "react-native";
 
 const Styles = {
-	default: {
-
-	}
+	default: {}
 };
 
 export default Styles;

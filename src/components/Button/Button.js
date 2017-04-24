@@ -1,27 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text as TextReactNative } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native';
+import { Item, View } from '../../components';
 import Styles from './styles';
 
-const Text = ({
+const Button = ({
 	em,
 	strong,
 	style,
 	...rest
-}, context) => {
+}, conButton) => {
 
   const mergedStyle = Object.assign(
     {},
     style,
     Styles.default,
-    context.theme.View.default,
+    conButton.theme.View.default,
   );
 
   em && Object.assign(mergedStyle, Styles.em, themeStyles.em);
   strong && Object.assign(mergedStyle, Styles.strong, themeStyles.strong);
 
 	return (
-		<TextReactNative
+		<ButtonReactNative
 			{...rest}
 			style={mergedStyle}
 		/>
@@ -29,24 +30,24 @@ const Text = ({
 };
 
 
-Text.propTypes = {
+Button.propTypes = {
   color: PropTypes.string,
   em: PropTypes.bool,
   strong: PropTypes.bool,
   style: PropTypes.shape({})
 };
 
-Text.defaultProps = {
+Button.defaultProps = {
   em: false,
   strong: false,
   style: {}
 };
 
-Text.contextTypes = {
+Button.conButtonTypes = {
 	theme: React.PropTypes.object,
 };
 
-export default Text;
+export default Button;
 
 
 
@@ -55,7 +56,7 @@ export default Text;
 
 
 
-class Text extends ArwenComponent {
+class Button extends ArwenComponent {
 
 	static propTypes = {
 		color: PropTypes.string,
@@ -73,7 +74,7 @@ class Text extends ArwenComponent {
 			em,
 			strong
 		} = this.props;
-		const themeStyles = this.getTheme().Text;
+		const themeStyles = this.getTheme().Button;
 		const style = Object.assign({}, Styles.default, themeStyles.default);
 
 		em && Object.assign(style, Styles.em, themeStyles.em);
@@ -84,10 +85,10 @@ class Text extends ArwenComponent {
 
 	render() {
 		return (
-			<TextReactNative style={[this.getStyles()]}>{this.props.children}</TextReactNative>
+			<ButtonReactNative style={[this.getStyles()]}>{this.props.children}</ButtonReactNative>
 		)
 	}
 }
 
-export default Text;
+export default Button;
 */
